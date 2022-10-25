@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "npoplayer/src/scss/npoplayer.scss";
+import NpoPlayer from "npoplayer";
+import { useEffect } from "react";
+window.npoplayer = NpoPlayer;
 
-function App() {
+export default function App() {
+  useEffect(() => {
+    let container = document.getElementById("my-player");
+    let options = {};
+    const jwt = "hee";
+    
+    let player = new window.npoplayer(container, options);
+    player.loadStream(jwt);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div style={{width: "50%", display: "flex", justifyContent: "center"}}>
+        <div id="my-player"></div>
+      </div>
+    </>
   );
 }
-
-export default App;
